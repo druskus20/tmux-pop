@@ -12,4 +12,5 @@ tmux_get() {
 
 color="$(tmux_get '@tmux-pop-color' 'brightblack')"
 
-tmux set-hook -g after-select-pane "run-shell '$CURRENT_DIR/scripts/pop.sh $color'"
+tmux set-hook -g pane-focus-in "if-shell -F '#{==:#{window_panes},1}' '' 'run-shell \"$CURRENT_DIR/scripts/pop.sh $color\"'"
+
